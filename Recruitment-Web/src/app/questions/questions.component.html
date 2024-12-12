@@ -1,0 +1,251 @@
+<h1>Question</h1>
+
+<div class="wrapper">
+    <div class="cols">
+
+              <div class="col" ontouchstart="this.classList.toggle('hover');">
+                  <div class="container">
+                      <div class="front" style="background-image: url(https://images.unsplash.com/photo-1606326608606-aa0b62935f2b?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8Mnx8ZXhhbXxlbnwwfHwwfHx8MA%3D%3D)">
+                          <div class="inner">
+                              <p>MCQ</p>
+                          </div>
+                      </div>
+                      <div class="back">
+                          <div class="inner">
+                        
+                            <button type="button" class="btn btn-primary ml-2" (click)="viewques()">View</button>
+                            <button type="button" class="btn btn-success ml-2" (click)="addmcqmodal()">Add</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+              <div class="col" ontouchstart="this.classList.toggle('hover');">
+                  <div class="container">
+                      <div class="front" style="background-image: url(https://images.unsplash.com/photo-1522252234503-e356532cafd5?w=500&auto=format&fit=crop&q=60&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxzZWFyY2h8MTJ8fGNvZGV8ZW58MHx8MHx8fDA%3D)">
+                          <div class="inner">
+                              <p>CODING</p>
+                          </div>
+                      </div>
+                      <div class="back">
+                          <div class="inner">
+                     
+                              <button type="button" class="btn btn-primary ml-2" (click)="viewcodeques()">View</button>
+                              <button type="button" class="btn btn-success ml-2" (click)="addcodemodal()">Add</button>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+
+          </div>
+   </div>
+
+
+   <!-- MCQ Question insertion modal -->
+<div class="modal fade" id="addmcqModal" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Add MCQ</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeaddmcq()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+
+            <textarea placeholder="Enter your question here..." id="textarea" [(ngModel)]="questionobj.question" rows="8" cols="55"></textarea>
+
+            <div class="options ">
+
+                <div class="col1 ">
+
+                    <div class="row1 form__group field">
+                        <input type="input" class="form__field " id="option1" [(ngModel)]="questionobj.option1" placeholder="option1" name="option1"  />
+                        <label for="option1" class="form__label">Option 1:</label>
+                    </div>
+    
+                    <div class="row1 form__group field">
+
+                        <input type="input" class="form__field " id="option2" [(ngModel)]="questionobj.option2" placeholder="option2" name="option2"  />
+                        <label for="option2" class="form__label">Option 2:</label>
+                    </div>
+
+                </div>
+
+                <div class="col2">
+
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="option3" [(ngModel)]="questionobj.option3" placeholder="option3" name="option3"  />
+                        <label for="option3" class="form__label">Option 3:</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="option4" [(ngModel)]="questionobj.option4" placeholder="option4" name="option4"  />
+                        <label for="option4" class="form__label">Option 4:</label>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+
+                    <div class="row3">
+                        <label for="correctans">Correct Answer:</label>
+                        <select class="form-control" id="correctans" [(ngModel)]="questionobj.correctAnswer" (change)="onCorrectAnswerChange()" name="correctans">
+                            <option value="option1">Option 1</option>
+                            <option value="option2">Option 2</option>
+                            <option value="option3">Option 3</option>
+                            <option value="option4">Option 4</option>
+                        </select>
+                    </div>
+
+                    <div class="row3">
+                        <label for="difficulty">Difficulty Level:</label>
+                        <select class="form-control" id="difficulty" [(ngModel)]="questionobj.difficulty" name="difficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+
+                    <div class="row3">
+                        <label for="difficulty">Category</label>
+                        <select class="form-control" id="category" [(ngModel)]="questionobj.category" name="category">
+                            <option value="Java">Java</option>
+                            <option value="Python">Python</option>
+                            <option value="C++">C++</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>  
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closeaddmcq()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addmcq()" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+</div>
+
+   <!-- Code Question insertion modal -->
+   <div class="modal fade " id="addcodeModal" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Add Code</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeaddcode()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+
+            <textarea placeholder="Enter your question here..." id="textarea" [(ngModel)]="codeobj.question" rows="8" cols="55"></textarea>
+
+            <div class="options ">
+
+                <div class="col2 ">
+
+                    <div class="row1 form__group field">
+                        <input type="input" class="form__field " id="testcase1" [(ngModel)]="codeobj.testCase1" placeholder="Test Case 1" name="testcase1"  />
+                        <label for="testcase1" class="form__label">Test Case 1 :</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="expectedoutput1" [(ngModel)]="codeobj.expected1" placeholder="Expected Output 1" name="expectedoutput1"  />
+                        <label for="expectedoutput1" class="form__label">Expected Output 1 :</label>
+                    </div>
+
+                </div>
+
+                <div class="col2">
+
+                    <div class="row1 form__group field">
+
+                        <input type="input" class="form__field " id="testcase2" [(ngModel)]="codeobj.testCase2" placeholder="test Case 2" name="testcase2"  />
+                        <label for="testcase2" class="form__label">Test Case 2 :</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="expectedoutput2" [(ngModel)]="codeobj.expected2" placeholder="Expected Output 2" name="expectedoutput2"  />
+                        <label for="expectedoutput2" class="form__label">Expected Output 2 :</label>
+                    </div>
+
+                </div>
+
+                <div class="col2">
+
+                    <div class="row1 form__group field">
+
+                        <input type="input" class="form__field " id="testcase3" [(ngModel)]="codeobj.testCase3" placeholder="Test Case 3" name="testcase3"  />
+                        <label for="testcase3" class="form__label">Test Case 3 :</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="expectedoutput3" [(ngModel)]="codeobj.expected3" placeholder="Expected Output 3" name="expectedoutput3"  />
+                        <label for="expectedoutput3" class="form__label">Expected Output 3 :</label>
+                    </div>
+
+                </div>
+
+                <div class="col2">
+
+                    <div class="row1 form__group field">
+
+                        <input type="input" class="form__field " id="testcase4" [(ngModel)]="codeobj.testCase4" placeholder="Test Case 4" name="testcase4"  />
+                        <label for="testcase4" class="form__label">Test Case 4 :</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="expectedoutput4" [(ngModel)]="codeobj.expected4" placeholder="Expected Output 4" name="expectedoutput4"  />
+                        <label for="expectedoutput4" class="form__label">Expected Output 4 :</label>
+                    </div>
+
+                </div>
+
+                <div class="col2">
+
+                    <div class="row1 form__group field">
+
+                        <input type="input" class="form__field " id="testcase5" [(ngModel)]="codeobj.testCase5" placeholder="Test Case 5" name="testcase5"  />
+                        <label for="testcase5" class="form__label">Test Case 5 :</label>
+                    </div>
+    
+                    <div class="row2 form__group field">
+
+                        <input type="input" class="form__field " id="expectedoutput5" [(ngModel)]="codeobj.expected5" placeholder="Expected Output 5" name="expectedoutput5"  />
+                        <label for="expectedoutput5" class="form__label">Expected Output 5 :</label>
+                    </div>
+
+                </div>
+
+                <div class="col3">
+
+                    <div class="row3">
+                        <label for="difficulty">Difficulty Level:</label>
+                        <select class="form-control" id="difficulty" [(ngModel)]="codeobj.difficulty" name="difficulty">
+                            <option value="Easy">Easy</option>
+                            <option value="Medium">Medium</option>
+                            <option value="Hard">Hard</option>
+                        </select>
+                    </div>
+
+                </div>
+
+            </div>  
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closeaddcode()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addcode()" data-dismiss="modal">Add</button>
+        </div>
+      </div>
+    </div>
+</div>

@@ -1,0 +1,65 @@
+<h4> Interland - Online Assesment!</h4>
+<div class="card-container">
+
+    <div class="card" id="profile">
+
+        <div class="card-head">INSTRUCTIONS</div>
+
+        <div class="card-body">
+
+            <div class="intro">
+                <p>
+                    Warm greetings from Interland! We are thrilled to welcome you to our recruitment process and appreciate your interest in joining our team. Your decision to explore opportunities with us is a significant step, and we are excited about the prospect of having someone of your caliber contribute to our dynamic work environment. 
+                    <br> At Interland, we believe in fostering a culture of innovation, collaboration, and excellence. Our commitment to [specific industry or values] sets us apart, and we are constantly seeking talented individuals who share our passion and dedication.
+                    <br> Our recruitment process is designed to ensure that we not only identify the right skills and qualifications but also discover individuals who align with our values and vision. 
+                </p>
+            </div>
+
+            <div class="rules">
+                <h6>Rules :</h6>
+                <ul>
+                    <li>The online assessment is to be completed in 60 minutes. Please ensure that you allocate sufficient time to complete the assessment without interruptions.</li>
+                    <li>The timer for the assessment will begin once the start button below is clicked. Once the allocated time is completed the assesment will be submitted..</li>
+                    <li>The assessment will be hosted on [assessment platform]. Prior to the scheduled time, please ensure that you have a stable internet connection and access to a device with the necessary specifications.</li>
+                    <li>This assessment is to be completed individually. Collaboration or assistance from others is strictly prohibited.</li>
+                    <li> Choose a quiet and well-lit environment to minimize distractions during the assessment.</li>
+                    <li>Ensure that you submit your completed assessment within the designated time frame.</li>
+                    <li>If you encounter any technical issues during the assessment, please contact our support team immediately for assistance.</li>
+                    <li>After the assessment, our team will review your submission. Successful candidates will proceed to the next stage of the recruitment process.</li>
+                    <li>Treat the contents of the assessment with confidentiality. Sharing or reproducing any part of the assessment is strictly prohibited.</li>
+                  </ul>
+            </div>
+
+            <div>
+                <p>We appreciate your commitment to this process and look forward to reviewing your assessment.</p>
+                <p>Best Regard's</p>
+                <p>HR Team
+                    <br>Interland Technologies LTD
+                </p>
+
+
+            </div>
+
+            <button class="start-test-btn" (click)="startTest()" [disabled]="!currentCriteria">Start Test</button>
+
+        </div>
+
+    </div>
+
+</div>
+
+ <!-- Test Warning -->
+ <div id="testwarning-modal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">						
+          <h4 class="modal-title w-100">Warning</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closemodal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>No Test Published</p>
+        </div>
+      </div>
+    </div>
+  </div>
+  

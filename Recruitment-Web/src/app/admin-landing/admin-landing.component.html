@@ -1,0 +1,222 @@
+<h1>Dashboard</h1>
+<div class="card-container">
+  <div class="card" id="card-search">
+        <div class="card-head">Search
+          <button type="button" class="fa fa-window-minimize search-min" (click)="toggleCardBody()"></button>
+        </div>
+        <div class="card-body" id="search-card" [@fadeInOut] *ngIf="isCardBodyVisible">
+          <div class="form__group field">
+
+            <div class="col1">
+              <!-- <input type="input" class="form__field " id="name" placeholder="Name" name="name"  /> -->
+              <label for="name" class="form__label">Name</label>
+            </div>
+
+            <div class="col2">
+              <input type="input" class="form__field " id="userid" placeholder="User Name" name="UserId"  />
+              <label for="userid" class="form__label">UserID</label>
+            </div>
+
+          </div>
+          
+          <div class="form__group field">
+
+            <div class="col1">
+              <input type="input" class="form__field" id="college" placeholder="Cojjllege" name="college"  />
+              <label for="college" class="form__label">College</label>
+            </div>
+
+
+            <div class="col2">
+              <label class="form__label" for="idStatus">Status</label>
+              <select class="form__field" id="idStatus">
+                <option value="">Status</option>
+                <option value="1">Pending Approval</option>
+                <option value="2">Deleted</option>
+                <option value="3">Delete Approval</option>
+                <option value="4">Approved</option>
+              </select>
+            </div>
+
+            
+
+            
+
+          </div>
+          <div class="form__group field">
+
+            
+
+            <div class="col3-bt">
+              <button class="btn-clear" (click)="clear()">Clear</button>
+              <button class="btn-search" (click)="search()">Search</button>
+            </div>
+
+            
+
+          </div>
+      </div>
+  </div>
+</div>
+
+<div class="card-container">
+    <div class="card">
+
+      <div class="card-head">Candidates</div>
+
+      <div class="card-body" id="candlist">
+         
+        <div class="row mb-2">
+          <div class="col-md-12">
+            <div class="bs-example">
+              <ul class="nav nav-pills table-status-badge">
+                <li class="nav-item">
+                  <a class="nav-link active" (click)="refreshByStatus('')">
+                    All: {{ statusCountList.totalStatus }}
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="refreshByStatus('1')">
+                 Pending Approval
+                    <span class="badge badge-light ipsh-badge-pending">
+                      {{ statusCountList.processd }}
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="refreshByStatus('2')">
+                    Deleted
+                    <span class="badge badge-primary ipsh-badge-delete">
+                      {{ statusCountList.deleted }}
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="refreshByStatus('3')">
+                    Delete Approval
+                    <span class="badge badge-primary ipsh-badge-delete-approval">
+                      {{ statusCountList.delete }}
+                    </span>
+                  </a>
+                </li>
+                <li class="nav-item">
+                  <a class="nav-link" (click)="refreshByStatus('4')">
+                    Approved
+                    <span class="badge badge-primary ipsh-badge-approve">
+                      {{ statusCountList.verified }}
+                    </span>
+                  </a>
+                </li>
+
+              </ul>
+            </div>
+          </div>
+        </div>
+
+        <div class="table-responsive">
+          <table id="candidate-table" class="table">
+            <thead id="id-table-head" class="bg-dark text-white">
+              <tr>
+                <th *ngFor="let head of initialHead">{{ get(head.name)  }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+            
+        <div class="actn-btn">
+          <div class="btn-update">
+            <button class="btn btn-warning" (click)="update()" >Update</button>
+          </div>
+          <div class="btn-delete">
+            <button class="btn btn-danger" (click)="delete()" >Delete</button>
+          </div>
+          <div class="btn-verify">
+            <button class="btn btn-success" (click)="Verify()" >Verify</button>
+          </div>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- View Details Modal -->
+  <div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">Details</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closedetails()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <ng-container *ngIf="selecteduser.image; else defaultImage">
+          <img src="data:image/png;base64,{{ selecteduser.image }}" alt="Profile Image" class="rounded-circle profile-image with-shadow" />
+        </ng-container>
+        <ng-template #defaultImage>
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Default Profile Image" class="rounded-circle profile-image with-shadow" />
+        </ng-template>
+        <div class="modal-body" id="detailsModalBody">
+          <!-- Display details here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closedetails()" data-dismiss="modal">Close</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Update Details Modal -->
+  <div class="modal fade" id="updateModal" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Update details</h5>
+          <button type="button" class="close" (click)="closeupdate()" data-dismiss="modal" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" id="updateModalBody">
+          <!-- Display details here -->
+        </div>
+        <label >
+          <span>Update Image</span>
+        </label>
+        <form action="fileUpload" method="post" enctype="multipart/form-data" id="idContentUpload">
+          <label for="images" class="drop-container" id="dropcontainer">
+            <span class="drop-title">Drop files here</span>
+            or
+            <input type="file" id="images" (change)="onFileSelected($event)" accept="image/*" required>
+          </label>          
+        </form>
+        
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" (click)="closeupdate()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-secondary" (click)="updateCandidate()" data-dismiss="modal">Update</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Delete Modal Design 01 -->
+  <div id="delete-user-modal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">
+          <div class="icon-box">
+            <i class="material-icons">&#xE5CD;</i>
+          </div>						
+          <h4 class="modal-title w-100">Are you sure?</h4>	
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancelDeleteUser()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete these records? This process cannot be undone.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancelDeleteUser()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDeleteUser()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>
+  

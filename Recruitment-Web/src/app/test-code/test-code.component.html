@@ -1,0 +1,325 @@
+
+
+<!-- test-code.component.html -->
+<div class="container mt-4">
+  <div class="row">
+  <div class="question-cards-container col-md-6">
+        <!-- Left side for question -->
+      <!-- Question container with additional space and colors -->
+      <div class="mb-4 p-3 border rounded bg-light h-400" style="background-color: #F8F9FA; border-color: #DEE2E6;">
+        <!-- Additional container for question content -->
+        <div class="col-md-12">
+          <!-- Your existing HTML code -->
+          <div class="card" id="test">
+            <div class="card-head">
+              Coding Question {{ currentQuestionIndex + 1 }}
+            </div>
+            <div class="card-body">
+              <label><b>Question ID</b></label>
+              <p>{{ currentQuestion.question }}</p>
+            </div>
+          </div>
+
+<div class="row mt-3 d-none">
+            <div class="col-md-6 ">
+              <label for="input" class="form-label text-dark mt-2 mb-2">INPUT</label>
+              <textarea id="input" class="form-control" aria-label="Input Textarea"></textarea>
+            </div>
+            <div class="col-md-6 ">
+              <label for="output" class="form-label text-dark mt-2 mb-2">OUTPUT</label>
+              <textarea id="output" class="form-control" aria-label="Output Textarea"></textarea>
+            </div>
+          </div>
+
+          <!-- Test case buttons and text areas (arranged vertically with more spacing) -->
+          <div class="mt-4">
+            <div class="row">
+              <!-- Test Case 1 -->
+              <div class="col-md-12 mb-3 test-case-container" test-id="test1">
+                <!-- <button type="button" id="button1" class="btn btn-primary test-case-btn">Test Case 1</button> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="input1" class="form-label text-dark" style="color: #495057;">Input 1</label>
+                      <textarea id="input1" class="form-control" rows="3" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="expected-output" class="form-label text-dark" style="color: #495057;">Expected Output</label>
+                      <textarea class="form-control" rows="3" id="expected-output-test1" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Test Case 2 -->
+              <div class="col-md-12 mb-3 test-case-container" test-id="test2">
+                <!-- <button type="button" id="button2" class="btn btn-primary test-case-btn">Test Case 2</button> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="input2" class="form-label text-dark" style="color: #495057;">Input 2</label>
+                      <textarea id="input2" class="form-control" rows="3" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="expected-output" class="form-label text-dark" style="color: #495057;">Expected Output</label>
+                      <textarea class="form-control" rows="3" id="expected-output-test2" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              <!-- Test Case 3 -->
+              <div class="col-md-12 mb-3 test-case-container" test-id="test3">
+                <!-- <button type="button" id="button3" class="btn btn-primary test-case-btn">Test Case 3</button> -->
+                <div class="row">
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="input3" class="form-label text-dark" style="color: #495057;">Input 3</label>
+                      <textarea id="input3" class="form-control" rows="3" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+
+                  <div class="col-md-6">
+                    <div class="mb-3">
+                      <label for="expected-output" class="form-label text-dark" style="color: #495057;">Expected Output</label>
+                      <textarea class="form-control" rows="3" id="expected-output-test3" style="background-color: #D1ECF1;"></textarea>
+                    </div>
+                  </div>
+                </div>
+              </div>
+              
+            
+            </div>
+          </div>
+        </div>
+      </div>
+  </div>
+    
+    <!-- Right side for code editor, input, and output -->
+    <div class="col-md-6">
+      <!-- Code editor and controls -->
+      <div class="d-flex justify-content-end mb-2 bg-dark rounded p-2" style="background-color: #343A40; border-color: #343A40;">
+        <div class="timer-box">
+          {{ formatTime(timerValue) }}
+        </div>
+        <div class="col-12 w-25">
+          <label class="visually-hidden" for="inlineFormSelectPref" style="color: #FFFFFF;">Language</label>
+          <select class="form-select" id="inlineFormSelectPref" style="background-color: #495057; color: #FFFFFF;">
+            <option selected>Choose...</option>
+            <option value="java">Java</option>
+            <option value="cpp">C++</option>
+            <option value="c">C</option>
+         
+          </select>
+        </div>
+        <div class="d-flex flex-column align-items-end">
+          <button type="button" id="run" class="btn btn-success" style="background-color: #28A745;"><i class="bi bi-play-fill"></i> Run</button>
+        </div>
+      </div>
+      <!-- Code editor textarea -->
+      <textarea id="editor" class="form-control" aria-label="Code Editor"></textarea>
+      <!-- Test Case Statuses -->
+      <div class="mt-4 p-3 border rounded" style="background-color: #F8F9FA; border-color: #DEE2E6;">
+        <h4 class="text-dark mb-3" style="color: #007BFF;">Test Case Statuses</h4>
+        <div class="test-case-status-container">
+          <!-- Test Case 1 Status -->
+          <div class="test-case-status mb-3">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Test Case 1:</label>
+            <span id="status-badge-test1" class="badge bg-secondary ml-4 px-2">Pending</span>
+          </div>
+          <!-- Test Case 2 Status -->
+          <div class="test-case-status mb-3">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Test Case 2:</label>
+            <span id="status-badge-test2" class="badge bg-secondary ml-4 px-2">Pending</span>
+          </div>
+          <!-- Test Case 3 Status -->
+          <div class="test-case-status mb-3">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Test Case 3:</label>
+            <span id="status-badge-test3" class="badge bg-secondary ml-4 px-2">Pending</span>
+          </div>
+           <!-- Test Case 4 Status -->
+           <div class="test-case-status mb-3 d-none">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Test Case 4:</label>
+            <span id="status-badge-test4" class="badge bg-secondary ml-4 px-2">Pending</span>
+          </div>
+           <!-- Test Case 5 Status -->
+           <div class="test-case-status mb-3 d-none">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Test Case 5:</label>
+            <span id="status-badge-test5" class="badge bg-secondary ml-4 px-2">Pending</span>
+          </div>
+
+          <!-- Counter for total test cases -->
+          <div class="mt-3">
+            <label class="text-dark" style="color: #495057; font-weight: bold;">Successful Test Cases:</label>
+            <span id="success-counter" class="badge bg-success ml-2">{{statusCounter}}</span>
+            <span class="text-dark ml-2">out of 5</span>
+          </div>
+
+          <!-- Next and Previous buttons -->
+          <div class="d-flex justify-content-between mt-3">
+            <!-- Previous button -->
+            <!-- <button type="button" class="btn btn-primary" id="previousButton" (click)="previousButtonClick()">Previous</button> -->
+
+            <!-- Use ngIf to conditionally render Next or Submit button -->
+            <ng-container *ngIf="currentQuestionIndex < totalQuestions - 1; else submitButton">
+              <!-- Next button -->
+              <button type="button" class="btn btn-primary px-3" id="nextButton" (click)="nextButtonClick()">Next</button>
+            </ng-container>
+            <ng-template #submitButton>
+             
+            <button type="button" class="btn btn-success px-2" id="finalsubmitmodal" (click)="finalSubmitModal()" >Final Submit</button>
+            <button type="button" class="btn btn-success px-2 d-none" id="finalsubmit" (click)="finalSubmit()" >Final Submit</button>
+            </ng-template>
+
+
+            <!-- Next button -->
+            <!-- <button type="button" class="btn btn-primary" id="nextButton" (click)="nextButtonClick()">Next</button> -->
+
+            <!-- next1 button -->
+            <button type="button" class="btn btn-primary d-none" id="Submit" (click)="submit()">Submit</button>
+
+            
+            
+          </div>
+          
+        </div>
+        
+      </div>
+      
+    </div>
+    <!-- loading spinner -->
+    <div id="loading-spinner" class="spinner-border text-primary big-spinner" role="status" style="display: none;">
+      <span class="sr-only">Loading...</span>
+      </div>
+  </div>
+  
+
+</div>
+
+<div id="confirmation-modal" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">
+        <h4 class="modal-title w-100">Submit</h4>
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closemodal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>Submit Exam</p>
+        <!-- <p>Once submited chnages can't be made.</p> -->
+      </div>
+      <div class="modal-footer justify-content-center">
+        <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="closemodal()">Cancel</button>
+        <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="finalSubmit()">Submit</button>
+      </div>
+
+      
+    </div>
+    
+  </div>
+</div>
+
+
+<!-- Include CodeMirror dependencies and scripts -->
+<!-- ... (Same as before) -->
+<link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.css">
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/theme/dracula.css">
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/lib/codemirror.js"></script>
+<script src="src/app/test-code/codemirror-5.65.16/mode/python/python.js"></script>
+<script src="src/app/test-code/codemirror-5.65.16/mode/clike/clike.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/codemirror@5.65.16/addon/edit/closebrackets.js"></script>
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.2/font/bootstrap-icons.min.css">
+<!-- Include CodeMirror and Bootstrap JS files -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
+<!-- CodeMirror initialization script -->
+<script>
+  document.addEventListener('DOMContentLoaded', function () {
+    console.log("Initializing CodeMirror");
+    var editor = CodeMirror.fromTextArea(document.getElementById("editor"), {
+      mode: "text/x-c++src",
+      theme: "dracula",
+      lineNumbers: true,
+      autoCloseBrackets: true,
+    });
+    // Adjust editor size
+    var width = window.innerWidth;
+    editor.setSize(0.7 * width, "500");
+    var input = document.getElementById("input");
+    var output = document.getElementById("output");
+    var run = document.getElementById("run");
+    var option = document.getElementById("inlineFormSelectPref");
+    var code;
+    run.addEventListener("click", async function () {
+      code = {
+        code: editor.getValue(),
+        input: input.value,
+        lang: option.value,
+      };
+      try {
+        // Update the API endpoint to JDoodle
+        var oData = await fetch("https://api.jdoodle.com/v1/execute", {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            clientId: "c621c7ac7c350fc51cb8d9be50bcd6b5",
+            clientSecret: "25c36fcf1df2bae68cf8a54c6f5bb435a0b3ea3578141d26557874ce0348d9c0",
+            script: code.code,
+            stdin: code.input,
+            language: code.lang.toLowerCase(),
+          }),
+        });
+        var responseData = await oData.json();
+        output.value = responseData.output;
+        // Update test case statuses based on results
+        updateTestCaseStatus("test1", responseData.stdout); // Assuming the result is in stdout
+        updateTestCaseStatus("test2", responseData.stdout); // Adjust this based on the actual response
+        updateTestCaseStatus("test3", responseData.stdout); // Adjust this based on the actual response
+      } catch (error) {
+        console.error("Error during compilation:", error);
+        // Handle errors here, for example, display an error message to the user.
+      }
+    });
+    option.addEventListener("change", function () {
+      if (option.value == "java") {
+        editor.setOption("mode", "text/x-java");
+      } else if (option.value == "python") {
+        editor.setOption("mode", "text/x-python");
+      }
+        else if (option.value == "c") {
+        editor.setOption("mode", "text/x-csrc");
+      }
+        else {
+        editor.setOption("mode", "text/x-c++src");
+      }
+    });
+    // Function to update test case status badges
+    function updateTestCaseStatus(testId, result) {
+      var statusBadge = document.getElementById("status-badge-" + testId);
+      var expectedOutput;
+      // Set the expected output based on the test case
+      if (testId === "test1") {
+        expectedOutput = document.getElementById("expected-output-test1").value.trim();
+      } else if (testId === "test2") {
+        expectedOutput = document.getElementById("expected-output-test2").value.trim();
+      } else if (testId === "test3") {
+        expectedOutput = document.getElementById("expected-output-test3").value.trim();
+      }
+      console.log('Result:', result);
+      console.log('Expected Output:', expectedOutput);
+      if (result.trim() === expectedOutput) {
+        statusBadge.classList.remove("bg-secondary");
+        statusBadge.classList.add("bg-success");
+        statusBadge.innerText = "Success";
+      } else {
+        statusBadge.classList.remove("bg-secondary");
+        statusBadge.classList.add("bg-danger");
+        statusBadge.innerText = "Failed";
+      }
+    }
+  });
+</script>
+

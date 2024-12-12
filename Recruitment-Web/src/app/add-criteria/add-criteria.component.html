@@ -1,0 +1,187 @@
+<style>
+    .error-message {
+        color: red;
+        font-size: 12px; /* Adjust the font size as needed */
+    }
+</style>
+
+<h1>Criteria</h1>
+<div class="card-container">
+
+    <div class="card" id="criteria">
+
+        <div class="card-head">Add Criteria</div>
+    
+        <div class="card-body">
+    
+            <form #criteriaForm="ngForm" (ngSubmit)="addcriteria()">
+    
+                <div class="options">
+    
+                    <div class="col1">
+    
+                        <div class="row2">
+                            <label for="codeeasy">No. of Code (Easy)</label>
+                            <input type="text" id="codeeasy" [(ngModel)]="criteriaobj.easyCodingQuestions" name="codeeasy" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['codeeasy'].invalid && (criteriaForm.controls['codeeasy'].dirty || criteriaForm.controls['codeeasy'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['codeeasy'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['codeeasy'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2">
+                            <label for="codeinter">No. of Code (Medium)</label>
+                            <input type="text" id="codeinter" [(ngModel)]="criteriaobj.mediumCodingQuestions" name="codeinter" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['codeinter'].invalid && (criteriaForm.controls['codeinter'].dirty || criteriaForm.controls['codeinter'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['codeinter'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['codeinter'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2">
+                            <label for="codehard">No. of Code (Hard)</label>
+                            <input type="text" id="codehard" [(ngModel)]="criteriaobj.hardCodingQuestions" name="codehard" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['codehard'].invalid && (criteriaForm.controls['codehard'].dirty || criteriaForm.controls['codehard'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['codehard'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['codehard'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="col2">
+    
+                        <div class="row2">
+                            <label for="mcqeasy">No. of MCQ (Easy)</label>
+                            <input type="text" id="mcqeasy" [(ngModel)]="criteriaobj.easyMcqQuestions" name="mcqeasy" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['mcqeasy'].invalid && (criteriaForm.controls['mcqeasy'].dirty || criteriaForm.controls['mcqeasy'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqeasy'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqeasy'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2">
+                            <label for="mcqinter">No. of MCQ (Medium)</label>
+                            <input type="text" id="mcqinter" [(ngModel)]="criteriaobj.mediumMcqQuestions" name="mcqinter" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['mcqinter'].invalid && (criteriaForm.controls['mcqinter'].dirty || criteriaForm.controls['mcqinter'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqinter'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqinter'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2">
+                            <label for="mcqhard">No. of MCQ (Hard)</label>
+                            <input type="text" id="mcqhard" [(ngModel)]="criteriaobj.hardMcqQuestions" name="mcqhard" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['mcqhard'].invalid && (criteriaForm.controls['mcqhard'].dirty || criteriaForm.controls['mcqhard'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqhard'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['mcqhard'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                    </div>
+    
+                    <div class="col3">
+    
+                        <div class="row2">
+                            <label for="test">Test Name</label>
+                            <input type="text" id="test" [(ngModel)]="criteriaobj.title" name="test" required>
+                            <div *ngIf="criteriaForm.controls['test'].invalid && (criteriaForm.controls['test'].dirty || criteriaForm.controls['test'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['test'].errors.required">This field is required.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2">
+                            <label for="duration">Duration</label>
+                            <input type="text" id="duration" [(ngModel)]="criteriaobj.testDuration" name="duration" required pattern="[0-9]+">
+                            <div *ngIf="criteriaForm.controls['duration'].invalid && (criteriaForm.controls['duration'].dirty || criteriaForm.controls['duration'].touched)">
+                                <span class="error-message" *ngIf="criteriaForm.controls['duration'].errors.required">This field is required.</span>
+                                <span class="error-message" *ngIf="criteriaForm.controls['duration'].errors.pattern">Enter a valid number.</span>
+                            </div>
+                        </div>
+    
+                        <div class="row2 mt-2">
+                            <button type="submit" class="btn btn-success ml-2" [disabled]="criteriaForm.invalid">Add</button>
+                        </div>
+    
+                    </div>
+    
+                </div>
+    
+            </form>
+    
+        </div>
+    </div>
+
+    <div class="card" id="allcriteria">
+
+        <div class="card-head">Criteria</div>
+
+        <div class="card-body" id="criterialist">
+
+            <div class="table-responsive">
+
+                <table id="criteria-table" class="table table-bordered">
+
+                    <thead id="id-table-head" class="bg-dark text-white">
+                      <tr>
+                        <th *ngFor="let head of initialHead">{{ get(head.name)  }}</th>
+                      </tr>
+                    </thead>
+    
+                    <tbody>
+                    </tbody>
+    
+                </table>
+
+            </div>
+
+            <div class="btn-delete">
+                <button class="btn btn-danger" (click)="delete()" >Delete Selected Rows</button>
+            </div>
+            
+        </div>
+
+    </div>
+
+</div>
+
+<!-- <div class="modal fade" data-backdrop="false" id="delete-user-modal" tabindex="-1" role="dialog">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h4 class="modal-title">Delete</h4>
+            </div>
+            <div class="modal-body">
+                <p> Confirm to Delete</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary action-btn float-right" data-dismiss="modal"(click)="cancelDeleteCriteria()">NO</button>
+                <button type="button" class="btn btn-primary action-btn float-right"(click)="confirmDeleteCriteria()">YES</button>
+            </div>
+        </div>
+       
+    </div>
+</div> -->
+
+<!-- Delete Modal Design 01 -->
+
+<div id="delete-user-modal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">
+          <div class="icon-box">
+            <i class="material-icons">&#xE5CD;</i>
+          </div>						
+          <h4 class="modal-title w-100">Are you sure?</h4>	
+                  <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="cancelDeleteCriteria()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>Do you really want to delete these records? This process cannot be undone.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-secondary" data-dismiss="modal" (click)="cancelDeleteCriteria()">Cancel</button>
+          <button type="button" class="btn btn-danger" (click)="confirmDeleteCriteria()">Delete</button>
+        </div>
+      </div>
+    </div>
+  </div>

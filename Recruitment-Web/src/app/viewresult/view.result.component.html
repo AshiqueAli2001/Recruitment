@@ -1,0 +1,82 @@
+<div class="card-container">
+    <div class="card" id="card-search">
+        <div class="card-head">Search
+          <button type="button" class="fa fa-window-minimize search-min" (click)="toggleCardBody()"></button>
+        </div>
+        <div class="card-body" id="search-card" [@fadeInOut] *ngIf="isCardBodyVisible">
+          <div class="form__group field">
+
+            <div class="col1">
+              <input type="input" class="form__field " id="userid" placeholder="User ID" name="userid"  />
+              <label for="userid" class="form__label">User ID</label>
+            </div>
+
+            <div class="col2">
+              <input type="input" class="form__field " id="score" placeholder="Score" name="score"  />
+              <label for="score" class="form__label">Score</label>
+            </div>
+
+          </div>
+          
+          <div class="form__group field">
+
+            <div class="col1">
+              <input type="input" class="form__field" id="result" placeholder="Result" name="result"  />
+              <label for="result" class="form__label">Result</label>
+            </div>
+
+            <div class="col2-bt">
+              <button class="btn-clear" (click)="clear()">Clear</button>
+              <button class="btn-search" (click)="search()">Search</button>
+            </div>
+
+          </div>
+      </div>
+  </div>
+    <div class="card">
+      <div class="card-head">Candidates</div>
+      <div class="card-body" id="candlist">
+        <div class="table-responsive">
+          <table id="result-table" class="table">
+            <thead id="id-table-head" class="bg-dark text-white">
+              <tr>
+                <th *ngFor="let head of initialHead">{{ get(head.name)  }}</th>
+              </tr>
+            </thead>
+            <tbody>
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+</div>
+
+<!-- View Details Modal -->
+<div class="modal fade" id="detailsModal" tabindex="-1" role="dialog" aria-labelledby="detailsModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="detailsModalLabel">Details</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closedetails()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+
+        <ng-container *ngIf="candidate?.image; else defaultImage">
+          <img src="data:image/png;base64,{{ candidate.image }}" alt="Profile Image" class="rounded-circle profile-image with-shadow" style="max-width: 100px; max-height: 100px;"/>
+        </ng-container>
+        <ng-template #defaultImage>
+          <img src="https://cdn-icons-png.flaticon.com/512/3135/3135715.png" alt="Default Profile Image" class="rounded-circle profile-image with-shadow" style="max-width: 100px; max-height: 100px;"/>
+        </ng-template>
+
+
+        <div class="modal-body" id="detailsModalBody">
+          <!-- Display details here -->
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closedetails()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="downloadPDF()">Download PDF</button>
+        </div>
+      </div>
+    </div>
+  </div>

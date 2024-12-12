@@ -1,0 +1,244 @@
+.card-container{
+    display: flex;
+    flex-direction: row;
+}
+
+.card-head{
+	text-align: center;
+	background-color: rgb(0,0,48);
+	color: #fff;
+	border-radius: 5px;	
+}
+
+#profile{
+
+    margin: 15px;
+    height: 550px;
+    width: 300px;
+	background-color: rgba(255, 255, 255, 0.8);
+
+    .profile-info{
+      img {
+        height: 150px;
+        width:  150px;
+        margin-left: 60px;
+        margin-top: 35px;
+        margin-bottom: 25px;
+      }
+
+      p{
+        
+        margin-top: 10px;
+      }
+    }
+
+	.btn-update{
+		margin-left: 8vh;
+	}
+
+	.rounded-circle {
+		width: 100px; 
+		height: 100px; 
+		object-fit: cover;
+		border-radius: 50%;
+	}
+
+	.with-shadow {
+		box-shadow: 0 5px 8px rgb(0,0,48,1.5);
+	  }
+}
+
+.file-input{
+	margin-left: 300px;
+	margin-bottom: 10px;
+	height: 40px;
+}
+
+.file-input-button{
+	margin-top: 50px;
+}
+
+.drop-container {
+	position: relative;
+	display: flex;
+	gap: 10px;
+	flex-direction: column;
+	justify-content: center;
+	align-items: center;
+	height: 190px;
+	padding: 20px;
+	border-radius: 10px;
+	border: 2px dashed #555;
+	color: #444;
+	cursor: pointer;
+	transition: background .2s ease-in-out, border .2s ease-in-out;
+}
+  
+  .drop-container:hover {
+	background: #eee;
+	border-color: #111;
+}
+  
+  .drop-container:hover .drop-title {
+	color: #222;
+}
+  
+  .drop-title {
+	color: #444;
+	font-size: 20px;
+	font-weight: bold;
+	text-align: center;
+	transition: color .2s ease-in-out;
+}
+
+#admins{
+
+    margin: 15px;
+    height: 550px;
+    width: 1000px;
+	background-color: rgba(255, 255, 255, 0.8);
+
+    .card-head{
+        text-align: center;
+    }
+}
+
+#admins-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#id-table-head th {
+    background-color: #000000;
+    color: #fff;
+}
+
+#admins-table td, #admins-table th {
+    border: 1px solid #ddd;
+    padding: 8px;
+}
+  
+#admins-table {
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+  
+#admins-table tbody {
+    max-height: 200px; 
+    overflow-y: auto; 
+}
+
+  
+#admins-table tbody tr:nth-child(even) {
+    background-color: #f9f9f9; 
+}
+  
+#admins-table tbody tr:nth-child(odd) {
+  background-color: #ffffff; 
+}
+
+.btn-delete{
+  margin-left: 100vh;
+  margin-top: 10px;
+}
+
+#admins-table {
+  text-align: center;
+}
+  
+#admins-table th,
+#admins-table td {
+  text-align: center;
+}
+
+
+/* modal styles */
+body {
+	font-family: 'Varela Round', sans-serif;
+}
+.modal-confirm {		
+	color: #636363;
+	width: 400px;
+}
+.modal-confirm .modal-content {
+	padding: 20px;
+	border-radius: 5px;
+	border: none;
+	text-align: center;
+	font-size: 14px;
+    background-color: #fafafa;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+.modal-confirm .modal-header {
+	border-bottom: none;   
+	position: relative;
+}
+.modal-confirm h4 {
+	text-align: center;
+	font-size: 26px;
+	margin: 30px 0 -10px;
+}
+.modal-confirm .close {
+	position: absolute;
+	top: -5px;
+	right: -2px;
+}
+.modal-confirm .modal-body {
+	color: #999;
+}
+.modal-confirm .modal-footer {
+	border: none;
+	text-align: center;		
+	border-radius: 5px;
+	font-size: 13px;
+	padding: 10px 15px 25px;
+}
+.modal-confirm .modal-footer a {
+	color: #999;
+}		
+.modal-confirm .icon-box {
+	width: 80px;
+	height: 80px;
+	margin: 0 auto;
+	border-radius: 50%;
+	z-index: 9;
+	text-align: center;
+	border: 3px solid #f15e5e;
+}
+.modal-confirm .icon-box i {
+	color: #f15e5e;
+	font-size: 46px;
+	display: inline-block;
+	margin-top: 13px;
+}
+.modal-confirm .btn, .modal-confirm .btn:active {
+	color: #fff;
+	border-radius: 4px;
+	background: #60c7c1;
+	text-decoration: none;
+	transition: all 0.4s;
+	line-height: normal;
+	min-width: 120px;
+	border: none;
+	min-height: 40px;
+	border-radius: 3px;
+	margin: 0 5px;
+}
+.modal-confirm .btn-secondary {
+	background: #c1c1c1;
+}
+.modal-confirm .btn-secondary:hover, .modal-confirm .btn-secondary:focus {
+	background: #a8a8a8;
+}
+.modal-confirm .btn-danger {
+	background: #f15e5e;
+}
+.modal-confirm .btn-danger:hover, .modal-confirm .btn-danger:focus {
+	background: #ee3535;
+}
+.trigger-btn {
+	display: inline-block;
+	margin: 100px auto;
+}
+  
+

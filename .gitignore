@@ -1,0 +1,20 @@
+# Backend (Spring Boot)
+target/
+*.log
+*.class
+
+# Frontend (Angular)
+node_modules/
+dist/
+.angular/
+
+# System Files
+.DS_Store
+Thumbs.db
+
+# IDE Settings
+.idea/
+.vscode/
+
+# Ignore all application.properties files
+application.properties

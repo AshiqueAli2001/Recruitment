@@ -1,0 +1,113 @@
+.card-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+
+    .card {
+        width: 1350px;
+        background-color: rgba(255, 255, 255, 0.8);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        margin: 10px;
+        height: auto;
+    
+        .card-head{
+            background-color: rgb(0,0,48);
+            color: #fff;
+            border-radius: 5px;	
+        }
+        
+    }
+
+    .btn-search {
+        padding: 10px 20px; 
+        background-color: #000000; 
+        color: white;
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer;
+        font-size: 16px; 
+        width: 100px;
+        margin-left: 10px;
+    }
+    
+    .btn-search:hover {
+        background-color: #595959; 
+        color: #000000;
+    }
+
+    .btn-clear {
+        padding: 10px 20px; 
+        background-color: #000000; 
+        color: white;
+        border: none; 
+        border-radius: 5px; 
+        cursor: pointer;
+        font-size: 16px; 
+        /* margin-right: 50px; */
+        width: 100px;
+    }
+    
+    .btn-clear:hover {
+        background-color: #595959; 
+        color: #000000;
+    }
+
+    #search-card{
+        display: flex;
+        flex-direction: column;
+        height: 200px;
+        background-color: rgba(255, 255, 255, 0.8);
+    }
+}
+
+.search-min{
+    margin-left: 1180px;
+    background: transparent;
+    color: #fff;
+    border-color: transparent ;
+}
+
+.search-min:hover{
+    margin-left: 1180px;
+    background: #ffffff;
+    color: #000000;
+    border-radius: 3px;
+    border-color: transparent ;
+}
+
+#candlist{
+    height: auto;
+}
+
+#candidate-table th {
+    text-align: center;
+}
+
+#candidate-table {
+    width: 100%;
+    border-collapse: collapse;
+}
+
+#id-table-head th {
+    background-color: #0c0d13;
+    color: #fff;
+}
+
+#candidate-table td, #candidate-table th {
+    border: none;
+    padding: 8px;
+}     m
+
+#candidate-table {
+    border-radius: 10px; 
+    overflow: hidden; 
+}
+
+#candidate-table {
+    text-align: center;
+}
+  
+#candidate-table th,
+#candidate-table td {
+    text-align: center;
+}

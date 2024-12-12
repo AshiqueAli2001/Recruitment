@@ -1,0 +1,33 @@
+
+<div *ngIf="!isLoginPage() && !isUserLoggedIn() && !testlog()&& !thankyou()&& !testcode()">
+    <app-sidenav (onToggleSideNav)="onToggleSideNav($event)"></app-sidenav>
+    <app-adminbody>
+        [collapsed]="isSidenavCollapsed"
+        [screenWidth]="screenWidth"
+    </app-adminbody>
+</div>
+
+<div *ngIf="isLoginPage()">
+    <app-login></app-login>
+</div>
+
+<div *ngIf="isUserLoggedIn()">
+    <app-candidate-landing></app-candidate-landing>
+</div>
+
+<div *ngIf="testlog()">
+    <app-test></app-test>
+</div>
+
+<div *ngIf="testcode()">
+    <app-test-code></app-test-code>
+</div>
+
+<div *ngIf="thankyou()">
+    <app-thankyou></app-thankyou>
+</div>
+
+
+  
+    
+

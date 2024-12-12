@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Configuration status="INFO">
+	<Properties>
+		<Property name="APP_LOG_ROOT">/alfaris/psh/logs</Property>
+	</Properties>
+	<Appenders>
+		<Console name="LogToConsole" target="SYSTEM_OUT">
+			<PatternLayout
+				pattern="%d{HH:mm:ss.SSS} [%t] %-5level %logger{36} - %msg%n" />
+		</Console>
+		<RollingFile name="LogToFileError"
+			fileName="${APP_LOG_ROOT}/service-registry/application_error.log"
+			filePattern="${APP_LOG_ROOT}/service-registry/application_error-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+		<RollingFile name="LogToFileTrace"
+			fileName="${APP_LOG_ROOT}/service-registry/application_info.log"
+			filePattern="${APP_LOG_ROOT}/service-registry/application_info-%d{yyyy-MM-dd}-%i.log">
+			<PatternLayout>
+				<Pattern>%d{yyyy-MM-dd HH:mm:ss} %-5p %m%n</Pattern>
+			</PatternLayout>
+			<Policies>
+				<TimeBasedTriggeringPolicy interval="1"
+					modulate="true" />
+			</Policies>
+		</RollingFile>
+	</Appenders>
+	<Loggers>
+		<Logger name="com.interland.serviceregistry" level="debug"
+			additivity="false">
+			<AppenderRef ref="LogToFileTrace" level="info" />
+			<AppenderRef ref="LogToFileError" level="error" />
+			<AppenderRef ref="LogToConsole" level="info" />
+		</Logger>
+		<Root level="info">
+			<AppenderRef ref="LogToFileTrace" />
+			<AppenderRef ref="LogToConsole" />
+		</Root>
+	</Loggers>
+</Configuration>

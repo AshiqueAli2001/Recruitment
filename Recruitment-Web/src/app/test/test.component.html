@@ -1,0 +1,107 @@
+<div class="card-container" id="ques" >
+    <div class="cover">
+        <div class="card" id="test">
+            <div class="card-body">
+                <div class="question-cards-container">
+                    <div *ngFor="let question of questions; let i = index" class="card" id="question" [@cardAnimation]>
+    
+                        <div class="card-head">
+                            Question {{ i + 1 }}
+                        </div>
+        
+                        <div class="card-body">
+        
+                            <label><b>Question</b></label>
+                            <p class="question-text" [@fadeInOut]>{{ question.question }}</p>
+        
+                            <label><b>Options</b></label>
+        
+                            <div class="form-check" *ngFor="let j of [1, 2, 3, 4]">
+                                <input
+                                  type="radio"
+                                  class="form-check-input"
+                                  name="options{{i}}"
+                                  [id]="'option' + j + 'q' + i"
+                                  [value]="question['option' + j]"
+                                  [(ngModel)]="selectedOptions[i]"
+                                  (change)="optionSelected(i)"
+                                />
+                                <label class="form-check-label" [for]="'option' + j + 'q' + i" [@fadeInOut]>{{ question['option' + j] }}</label>
+                            </div>
+        
+                            <div class="btn-chooseques">
+                                <button type="button" class="btn btn-warning mt-2 btn-clear" (click)="clearOptions(i)">Clear Options</button>
+                                <button type="button" class="btn btn-primary mt-2 btn-clear" (click)="checkLater(i)" >Check Latter</button>
+                            </div>
+        
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    
+        <div class="card" id="info">
+    
+            <div class="card-body">
+    
+                <div class="timer-box">
+                     {{ formatTime(timerValue) }}
+                </div>
+
+                <div class="colorinfo">
+                    <p><span class="rounded-ques-icon" style="background-color: white;"></span>Indicate Not Attempted</p>
+                    <p><span class="rounded-ques-icon" style="background-color: rgb(144, 238, 144);"></span>Indicate Attempted</p>
+                    <p><span class="rounded-ques-icon" style="background-color: rgb(135, 206, 250);"></span>Indicate Marked to check latter</p>
+                </div>
+    
+                <div class="card" id="icon-card">
+                    <div class="question-list">
+                        <div *ngFor="let question of questions; let i = index" (click)="goToQuestion(i)" class="rounded-question-icon" [@zoom] [ngClass]="{ 
+                            'attempted': selectedOptions[i],
+                            'not-attempted': !selectedOptions[i],
+                            'checked-later': questionsCheckedLater[i] }">
+                          <span>
+                            {{ i + 1 }}
+                          </span>
+                        </div>
+                      </div>
+                </div>
+            </div>  
+            <button type="button" class="btn btn-danger ml-2" (click)="submit()">Submit</button>
+        </div>
+    </div>
+</div>
+
+<!-- Submit Confirmation -->
+<div id="confirmation-modal" class="modal fade">
+    <div class="modal-dialog modal-confirm">
+      <div class="modal-content">
+        <div class="modal-header flex-column">						
+          <h4 class="modal-title w-100">Submit</h4>	
+            <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closemodal()">&times;</button>
+        </div>
+        <div class="modal-body">
+          <p>You have not attempted {{notselected}} questions.Once submited changes can't be made.</p>
+        </div>
+        <div class="modal-footer justify-content-center">
+          <button type="button" class="btn btn-primary" data-dismiss="modal" (click)="closemodal()">Cancel</button>
+          <button type="button" class="btn btn-danger" data-dismiss="modal" (click)="submitTest()">Submit</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Timer Warning -->
+<div id="timewarning-modal" class="modal fade">
+  <div class="modal-dialog modal-confirm">
+    <div class="modal-content">
+      <div class="modal-header flex-column">						
+        <h4 class="modal-title w-100">Warning</h4>	
+          <button type="button" class="close" data-dismiss="modal" aria-hidden="true" (click)="closemodal()">&times;</button>
+      </div>
+      <div class="modal-body">
+        <p>You have 5 minutes left</p>
+      </div>
+    </div>
+  </div>
+</div>

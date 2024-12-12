@@ -1,0 +1,38 @@
+.card-container{
+    padding: 20px;
+}
+h4{
+    margin-top: 10px;
+    margin-left: 10px;
+}
+
+.start-test-btn {
+    position: absolute;
+    bottom: 20px; 
+    right: 20px; 
+    padding: 10px;
+    background-color: #4caf50;
+    color: white;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+p{
+    padding-left: 25px;
+    padding-right: 25px;
+    align-content: center;
+    justify-content: center;
+}
+
+#profile{
+
+    margin: 15px;
+    height: 650px;
+    width: 1470px;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+
+    .card-head{
+        text-align: center;
+    }
+}

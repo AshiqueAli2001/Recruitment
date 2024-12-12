@@ -1,0 +1,26 @@
+#fileupload{
+    height: 320px;
+}
+
+.file-input-container {
+    position: relative;
+    overflow: hidden;
+    display: inline-block;
+}
+
+.file-input-button {
+    border: 1px solid #ccc;
+    background-color: #f9f9f9;
+    padding: 8px 12px;
+    border-radius: 5px;
+    cursor: pointer;
+    display: inline-block;
+}
+
+.file-input {
+    position: absolute;
+    font-size: 100px;
+    opacity: 0;
+    right: 0;
+    top: 0;
+}

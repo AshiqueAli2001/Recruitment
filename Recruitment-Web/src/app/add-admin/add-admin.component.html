@@ -1,0 +1,178 @@
+<style>
+    .error-message {
+        color: red;
+        font-size: 12px; 
+    }
+</style>
+
+<h1>Add User</h1><div class="card-container">
+    <div class="card">
+        <div class="card-head">
+            Add Admin
+            <button type="button" class="fa fa-window-minimize admin-min" (click)="toggleCardBody()"></button>
+        </div>
+        <div class="card-body" id="addadmin-card" [@fadeInOut] *ngIf="isCardBodyVisible">
+            <form (ngSubmit)="addadmin()" #adminForm="ngForm">
+                <div id="no1">
+                    <div class="col1 form__group field">
+                        <input type="input" class="form__field" id="userId" [(ngModel)]="userobj.userId" name="userId" placeholder="Company ID" required pattern="[a-zA-Z0-9]+" minlength="1" maxlength="7"/>
+                        <label for="userId" class="form__label">Company Id</label>
+                        <div *ngIf="adminForm.controls['userId'].errors && (adminForm.controls['userId'].dirty || adminForm.controls['userId'].touched)">
+                            <span class="error-message" *ngIf="adminForm.controls['userId'].errors.required">Company ID is required.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['userId'].errors.pattern">Company ID must not contain special characters.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['userId'].errors.minlength">Company ID must be at least 1 character long.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['userId'].errors.maxlength">Company ID cannot be longer than 7 characters.</span>
+                        </div>
+                    </div>
+
+                    <div class="col2 form__group field">
+                        <input type="input" class="form__field" id="name" [(ngModel)]="userobj.name" name="name" placeholder="Name" required maxlength="5" />
+                        <label for="name" class="form__label">Name</label>
+                        <div *ngIf="adminForm.controls['name'].invalid && (adminForm.controls['name'].dirty || adminForm.controls['name'].touched)">
+                            <span class="error-message" *ngIf="adminForm.controls['name'].errors.required">Name is required.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['name'].errors.maxlength">Name cannot be longer than 5 characters.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div id="no1">
+                    <div class="col1 form__group field">
+                        <input type="input" class="form__field" id="phone" [(ngModel)]="userobj.phone" name="phone" placeholder="Phone" required pattern="[0-9]{10}" />
+                        <label for="phone" class="form__label">Phone No.</label>
+                        <div *ngIf="adminForm.controls['phone'].invalid && (adminForm.controls['phone'].dirty || adminForm.controls['phone'].touched)">
+                            <span class="error-message" *ngIf="adminForm.controls['phone'].errors.required">Phone is required.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['phone'].errors.pattern">Phone must be exactly 10 numeric characters.</span>
+                        </div>
+                    </div>
+
+                    <div class="col2 form__group field">
+                        <input type="input" class="form__field" id="email" [(ngModel)]="userobj.email" name="email" placeholder="Email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}" />
+                        <label for="email" class="form__label">Email</label>
+                        <div *ngIf="adminForm.controls['email'].invalid && (adminForm.controls['email'].dirty || adminForm.controls['email'].touched)">
+                            <span class="error-message" *ngIf="adminForm.controls['email'].errors.required">Email is required.</span>
+                            <span class="error-message" *ngIf="adminForm.controls['email'].errors.pattern">Enter a valid email address.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="btn-add col2-bt">
+                    <button type="submit" class="btn btn-primary ml-2" [disabled]="adminForm.invalid">Add</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+
+<div class="card-container">
+    <div class="card">
+
+        <div class="card-head" id="cardhead-candidate">
+            Add Candidates
+            <button type="button" class="fa fa-window-minimize candidte-min" (click)="togglecandidateCardBody()"></button>
+        </div>
+
+        <div class="card-body" id="fileupload" [@fadeInOut] *ngIf="iscandidateCardBodyVisible">
+
+            <label for="images" class="drop-container" id="dropcontainer">
+                <span class="drop-title">Drop files here</span>
+                or
+                <input type="file" enctype="multipart/form-data" accept=".xlsx, application/vnd.openxmlformats-officedocument.spreadsheetml.sheet" id="images" (change)="onFileSelected($event)" required>
+            </label>
+
+            <div class="btn-addcandidate" >
+                <button type="button" class="btn btn-primary ml-2" (click)="addcandidate()">Upload</button>
+                <button type="button" class="btn btn-primary ml-2" (click)="showaddcandidate()">Add </button>
+            </div>
+
+        </div>
+
+    </div>
+</div>
+
+<!-- Individual Candidate entry modal -->
+<div class="modal fade" id="addModal" tabindex="-1" role="dialog" aria-labelledby="updateLabel" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="updateModalLabel">Add Individual Candidate</h5>
+          <button type="button" class="close" data-dismiss="modal" (click)="closeadd()" aria-label="Close">
+            <span aria-hidden="true">&times;</span>
+          </button>
+        </div>
+        <div class="modal-body" >
+
+            <form #individualCandidateForm="ngForm" (ngSubmit)="addindividualcandidate()" novalidate>
+
+                <div class="form__group field">
+                    <div class="col1">   
+                        <input type="input" [(ngModel)]="userobj.userId" class="form__field " id="userId" placeholder="UserId" name="userId" required pattern="[a-zA-Z0-9]+">
+                        <label for="userId" class="form__label">UserId</label>
+                        <div *ngIf="individualCandidateForm.controls['userId'].invalid && (individualCandidateForm.controls['userId'].dirty || individualCandidateForm.controls['userId'].touched)">
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['userId'].errors.required">UserId is required.</span>
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['userId'].errors.pattern">UserId must not contain special characters.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group field">
+                    <div class="col1">
+                        <input type="input" [(ngModel)]="userobj.name" class="form__field " id="name" placeholder="Name" name="name" required>
+                        <label for="name" class="form__label">Name</label>
+                        <div *ngIf="individualCandidateForm.controls['name'].invalid && (individualCandidateForm.controls['name'].dirty || individualCandidateForm.controls['name'].touched)">
+                            <span class="error-message">Name is required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group field">
+                    <div class="col1">
+                        <input type="input" [(ngModel)]="userobj.college" class="form__field " id="college" placeholder="College" name="college" required>
+                        <label for="college" class="form__label">College</label>
+                        <div *ngIf="individualCandidateForm.controls['college'].invalid && (individualCandidateForm.controls['college'].dirty || individualCandidateForm.controls['college'].touched)">
+                            <span class="error-message">College is required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group field">
+                    <div class="col1">
+                        <input type="input" [(ngModel)]="userobj.department" class="form__field " id="department" placeholder="Department" name="department" required>
+                        <label for="department" class="form__label">Department</label>
+                        <div *ngIf="individualCandidateForm.controls['department'].invalid && (individualCandidateForm.controls['department'].dirty || individualCandidateForm.controls['department'].touched)">
+                            <span class="error-message">Department is required.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group field">
+                    <div class="col1">
+                        <input type="input" [(ngModel)]="userobj.email" class="form__field " id="email" placeholder="Email" name="email" required pattern="[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$">
+                        <label for="email" class="form__label">Email</label>
+                        <div *ngIf="individualCandidateForm.controls['email'].invalid && (individualCandidateForm.controls['email'].dirty || individualCandidateForm.controls['email'].touched)">
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['email'].errors.required">Email is required.</span>
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['email'].errors.pattern">Enter a valid email address.</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="form__group field">
+                    <div class="col1">
+                        <input type="input" [(ngModel)]="userobj.phone" class="form__field " id="phone" placeholder="Phone" name="phone" required pattern="[0-9]{10}">
+                        <label for="phone" class="form__label">Phone</label>
+                        <div *ngIf="individualCandidateForm.controls['phone'].invalid && (individualCandidateForm.controls['phone'].dirty || individualCandidateForm.controls['phone'].touched)">
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['phone'].errors.required">Phone is required.</span>
+                            <span class="error-message" *ngIf="individualCandidateForm.controls['phone'].errors.pattern">Enter a valid 10-digit phone number.</span>
+                        </div>
+                    </div>
+                </div>
+
+            </form>
+
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-danger" (click)="closeadd()" data-dismiss="modal">Close</button>
+          <button type="button" class="btn btn-primary" (click)="addindividualcandidate()" data-dismiss="modal" [disabled]="individualCandidateForm.invalid">Add</button>
+        </div>
+      </div>
+    </div>
+  </div>
